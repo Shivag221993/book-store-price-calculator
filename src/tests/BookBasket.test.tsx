@@ -28,4 +28,55 @@ describe('BookBasket Component UI (Vitest)', () => {
     expect(screen.getByText('Test Driven Development by Example')).toBeInTheDocument();
     expect(screen.getByText('Working Effectively With Legacy Code')).toBeInTheDocument();
   });
+
+  test('should increment total counters and display new totals upon user click events', () => {
+    render(<BookBasket />);
+
+    const incrementButtons = screen.getAllByRole('button', { name: /Increase/i });
+    
+    fireEvent.click(incrementButtons[0]);
+
+    expect(
+      screen.getByText((_, element) => element?.textContent === 'Total Books: 1')
+    ).toBeInTheDocument();
+    
+    expect(screen.getByText('€50.00')).toBeInTheDocument();
+  });
+
+  test('should reduce total values cleanly when subtraction triggers are executed', () => {
+    render(<BookBasket />);
+
+    const incrementButtons = screen.getAllByRole('button', { name: /Increase/i });
+    const decrementButtons = screen.getAllByRole('button', { name: /Decrease/i });
+
+    fireEvent.click(incrementButtons[2]);
+    fireEvent.click(incrementButtons[2]);
+    
+    expect(
+      screen.getByText((_, element) => element?.textContent === 'Total Books: 2')
+    ).toBeInTheDocument();
+    expect(screen.getByText('€100.00')).toBeInTheDocument();
+
+    fireEvent.click(decrementButtons[2]);
+    
+    expect(
+      screen.getByText((_, element) => element?.textContent === 'Total Books: 1')
+    ).toBeInTheDocument();
+    expect(screen.getByText('€50.00')).toBeInTheDocument();
+  });
+
+  test('should dynamically evaluate real-time multi-set discount computations upon combined clicks', () => {
+    render(<BookBasket />);
+
+    const incrementButtons = screen.getAllByRole('button', { name: /Increase/i });
+
+    fireEvent.click(incrementButtons[0]); 
+    fireEvent.click(incrementButtons[4]); 
+
+    expect(
+      screen.getByText((_, element) => element?.textContent === 'Total Books: 2')
+    ).toBeInTheDocument();
+    
+    expect(screen.getByText('€95.00')).toBeInTheDocument();
+  });
 });

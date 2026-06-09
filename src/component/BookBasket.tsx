@@ -34,6 +34,34 @@ export function BookBasket() {
       <hr className="divider" />
 
       <div className="book-list">
+        {AVAILABLE_BOOKS.map((book) => (
+          <div key={book.id} className="book-item">
+            <div className="book-details">
+              <strong>{book.title}</strong>
+              <div className="book-meta">{book.author} ({book.year})</div>
+            </div>
+            
+            <div className="quantity-controls">
+              <button 
+                onClick={() => updateQuantity(book.id, -1)}
+                className="btn-qty"
+                aria-label={`Decrease ${book.title} quantity`}
+              >
+                -
+              </button>
+              <span className="qty-display">
+                {basket[book.id]}
+              </span>
+              <button 
+                onClick={() => updateQuantity(book.id, 1)}
+                className="btn-qty"
+                aria-label={`Increase ${book.title} quantity`}
+              >
+                +
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className="summary-card">
