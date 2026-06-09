@@ -1,73 +1,37 @@
-# React + TypeScript + Vite
+This short and simple Kata should be performed using Test Driven Development (TDD).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+There is a series of books about software development that have been read by a lot of developers who want to improve their development skills. Let’s say an editor, in a gesture of immense generosity to mankind (and to increase sales as well), is willing to set up a pricing model where you can get discounts when you buy these books. The available books are :
 
-Currently, two official plugins are available:
+Clean Code (Robert Martin, 2008)
+The Clean Coder (Robert Martin, 2011)
+Clean Architecture (Robert Martin, 2017)
+Test Driven Development by Example (Kent Beck, 2003)
+Working Effectively With Legacy Code (Michael C. Feathers, 2004)
+Rules
+The rules are described below :
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+One copy of the five books costs 50 EUR.
 
-## React Compiler
+If, however, you buy two different books from the series, you get a 5% discount on those two books.
+If you buy 3 different books, you get a 10% discount.
+With 4 different books, you get a 20% discount.
+If you go for the whole hog, and buy all 5, you get a huge 25% discount.
+Note that if you buy, say, 4 books, of which 3 are different titles, you get a 10% discount on the 3 that form part of a set, but the 4th book still costs 50 EUR.
+Developers seeking to deliver quality products are queueing up with shopping baskets overflowing with these books. Your mission is to write a piece of code to calculate the price of any conceivable shopping basket.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+For example, how much does this basket of books cost?
 
-## Expanding the ESLint configuration
+2 copies of the “Clean Code” book
+2 copies of the “Clean Coder” book
+2 copies of the “Clean Architecture” book
+1 copy of the “Test Driven Development by Example” book
+1 copy of the “Working effectively with Legacy Code” book
+Answer :
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+(4 \* 50 EUR) - 20% [first book, second book, third book, fourth book]
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+(4 \* 50 EUR) - 20% [first book, second book, third book, fifth book]
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+= 160 EUR + 160 EUR
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+= 320 EUR (knowledge is priceless but has a cost)
